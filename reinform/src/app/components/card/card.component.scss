@@ -1,6 +1,45 @@
+$color: #673ab7;
+
 .card {
-  margin: 50px auto 0;
-  max-width: 1200px;
   display: flex;
-  flex-direction: row-reverse;
+  width: 1200px;
+  margin: 0 auto;
+  &-container {
+    margin: 50px auto 0;
+    overflow: hidden;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    border: 1px solid $color;
+  }
+  .mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-form-field  {
+    width: 255px;
+  }
+  &-empty {
+    color: $color;
+    cursor: pointer;
+  }
+  .textarea  {
+    text-align: left;
+  }
+}
+.buttons {
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  .icon {
+    margin: 10px;
+  }
+  .card-edit {
+    color: $color;
+    cursor: pointer;
+  }
+
 }

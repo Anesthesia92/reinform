@@ -9,7 +9,7 @@ import {BehaviorSubject} from "rxjs";
 export class CardService {
 
   public users: IUsers[] = UsersJson;
-  public cartItemList : any =[]
+  public cartItemList: any = [];
   private users$ = new BehaviorSubject<IUsers[]>(UsersJson);
   private IAuthor: IAuthor | any
 
@@ -39,5 +39,8 @@ export class CardService {
     this.users = [...this.users, newRow];
     this.users$.next([...this.users]);
   }
-
+  removeAllCart(){
+    this.cartItemList = []
+    this.users$.next(this.cartItemList);
+  }
 }

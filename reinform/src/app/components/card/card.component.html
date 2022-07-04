@@ -1,10 +1,44 @@
-<mat-card class="card">
-  <button mat-mini-fab routerLink="/" color="primary" class="card-home">
-    <mat-icon>home</mat-icon>
-  </button>
-  <mat-card-content>
-    <p></p>
-  </mat-card-content>
-  <mat-card-actions>
-  </mat-card-actions>
-</mat-card>
+<div class="card">
+  <mat-card class="card-container" *ngFor="let item of products; let i = index;">
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.id}}" disabled [disabled]="inputsDisabled">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+    <textarea matInput disabled rows="5" class="textarea" [disabled]="inputsDisabled">
+        {{item.author?.account}}
+        {{item.author?.fio }}
+        {{item.author?.post}}
+          </textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.docCode}}" [disabled]="inputsDisabled">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.docDate}}" [disabled]="inputsDisabled">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <textarea matInput [disabled]="inputsDisabled">{{item.docName}} </textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.docType}}" [disabled]="inputsDisabled">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <textarea matInput disabled [disabled]="inputsDisabled">{{item.address}} </textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.status}}" [disabled]="inputsDisabled">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput value="{{item.isSpecial}}" [disabled]="inputsDisabled">
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+  <div class="buttons">
+    <button mat-mini-fab routerLink="/" color="primary" class="card-home icon">
+      <mat-icon>home</mat-icon>
+    </button>
+    <mat-icon (click)="toggleInputsDisabled()" class="icon card-edit"> border_color</mat-icon>
+    <mat-icon (click)="emptyCard()" class="card-empty icon">delete_forever</mat-icon>
+  </div>
+</div>
