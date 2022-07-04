@@ -14,6 +14,10 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {MatCardModule} from "@angular/material/card";
+import {MainPageComponent} from './pages/main-page/main-page.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
     MainComponent,
     HeaderComponent,
     CardComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import {OverlayModule} from "@angular/cdk/overlay";
     MatSortModule,
     MatToolbarModule,
     MatCheckboxModule,
-    OverlayModule
+    OverlayModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

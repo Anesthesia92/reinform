@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import UsersJson from "../../../users.json";
 import {MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
+import UsersJson from '../../../users.json'
 import {MatSort, Sort} from "@angular/material/sort";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {CardService} from "../../service/card.service";
 
 @Component({
   selector: 'app-main',
@@ -16,42 +17,19 @@ export class MainComponent implements AfterViewInit {
     'status', 'isSpecial'];
   dataSource = new MatTableDataSource<IUsers>(UsersJson);
   selection = new SelectionModel<IUsers>(true, []);
-
   public isOpen = false;
-  public users: IUsers[] = UsersJson;
+  public productList : any;
+  @ViewChild(MatSort) sort: MatSort | any;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {
-    console.log(this.users);
+  constructor(private _liveAnnouncer: LiveAnnouncer, public cardService: CardService) {
+    console.log(UsersJson)
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
-  @ViewChild(MatSort) sort: MatSort | any;
-  //
-  // private users$ = new BehaviorSubject<IUsers[]>(UsersJson);
-  //
-  // getUsers$(): any {
-  //   return this.users$.asObservable();
-  //
-  // }
-  //
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  toggleAllRows() {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
-    }
-    this.selection.select(...this.dataSource.data);
-  }
-
-  announceSortChange(sortState: Sort) {
+  public announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -59,4 +37,7 @@ export class MainComponent implements AfterViewInit {
     }
   }
 
+  addToCart(item: any){
+    this.cardService.addToCart(item);
+  }
 }

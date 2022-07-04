@@ -1,6 +1,6 @@
 interface IUsers {
   id: string,
-  author?: IAuthor | null,
+  author: IAuthor | null,
   docCode: string,
   docDate: string,
   docName: string,
