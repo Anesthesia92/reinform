@@ -1,1 +1,62 @@
-<p>main works!</p>
+<div class="main">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="announceSortChange($event)">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <div class="columns">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id"> id</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by author"> author</th>
+        <td mat-cell *matCellDef="let element" class="th">
+          <ul class="author-list">
+            <li>{{element.author?.account}}</li>
+            <li> {{element.author?.fio }}</li>
+            <li>{{element.author?.post}}</li>
+          </ul>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="docCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by docCode"> docCode</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.docCode}} </td>
+      </ng-container>
+      <ng-container matColumnDef="docDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by docDate"> docDate</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.docDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="docName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by docName"> docName</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.docName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="docType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by docType"> docType</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.docType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address"> address</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.address}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"> status</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.status}} </td>
+      </ng-container>
+      <ng-container matColumnDef="isSpecial">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by isSpecial"> isSpecial</th>
+        <td mat-cell *matCellDef="let element" class="th"> {{element.isSpecial}} </td>
+      </ng-container>
+    </div>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>
